@@ -3,5 +3,5 @@ class Team < ApplicationRecord
   belongs_to :sport
   belongs_to :organization
 
-  has_many :users
+  has_and_belongs_to_many :users
 end
