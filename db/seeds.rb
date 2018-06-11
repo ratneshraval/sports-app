@@ -21,8 +21,14 @@ p 'Created Organizations'
 
 sports = Sport.create!(
   [
-    {name: 'baseball'},
-    {name: 'football'}
+    {
+      name: 'baseball',
+      icon_name: 'baseball'
+    },
+    {
+      name: 'football',
+      icon_name: 'football-ball'
+    }
   ]
 )
 p 'Created Sports'
