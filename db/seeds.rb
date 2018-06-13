@@ -11,66 +11,49 @@ Sport.delete_all
 Team.delete_all
 User.delete_all
 
-orgs = Organization.create!(
-  [
-    { name: 'sacramento state'},
-    { name: 'UC Davis'}
-  ]
-)
+org_names = []
+5.times do
+  org_names << {name: FFaker::Company.name}
+end
+orgs = Organization.create!(org_names)
 p 'Created Organizations'
 
 sports = Sport.create!(
   [
-    {
-      name: 'baseball',
-      icon_name: 'baseball'
-    },
-    {
-      name: 'football',
-      icon_name: 'football-ball'
-    }
+    {name: 'Baseball', icon_name: 'baseball-ball'},
+    {name: 'Football', icon_name: 'football-ball'},
+    {name: 'Basketball', icon_name: 'basketball-ball'},
+    {name: 'Soccer', icon_name: 'futbol'},
+    {name: 'Hockey', icon_name: 'hockey-puck'},
+    {name: 'Table Tennis', icon_name: 'table-tennis'}
   ]
 )
 p 'Created Sports'
 
-teams = Team.create!(
-  [
-    {
-      name: 'sac soccer',
-      sport: sports.first,
-      organization: orgs.first
-    },
-    {
-      name: 'sac football',
-      sport: sports.second,
-      organization: orgs.first
-    }
-  ]
-)
+team_objects = []
+10.times do
+  s = sports.sample
+  team_objects << {
+    name: "#{FFaker::Education.school_name} #{s.name}",
+    sport: s,
+    organization: orgs.sample
+  }
+end
+teams = Team.create!(team_objects)
 p 'Created Teams'
 
-users = User.create!(
-  [
-    {
-      first_name: 'John',
-      last_name: 'Smith',
-      email: 'john.smith@gmail.com',
-      height: '5\'10',
-      weight: '170',
-      is_public: true,
-      teams: [teams.first],
-      sports: [sports.first]
-    },
-    {
-      first_name: 'Mary',
-      last_name: 'Lane',
-      email: 'mary.lane@gmail.com',
-      height: '5\'7',
-      weight: '140',
-      is_public: false,
-      teams: [teams.second],
-      sports: [sports.second]
-    }
-  ]
-)
+user_objects = []
+20.times do
+  user_objects << {
+    first_name: FFaker::Name.first_name,
+    last_name: FFaker::Name.last_name,
+    email: FFaker::Internet.safe_email,
+    height: (100...200).to_a.sample,
+    weight: (100...200).to_a.sample,
+    is_public: [true, false].sample,
+    teams: teams.sample([1,2,3].sample),
+    sports: sports.sample([1,2,3].sample)
+  }
+end
+users = User.create!(user_objects)
 p 'Created Users'

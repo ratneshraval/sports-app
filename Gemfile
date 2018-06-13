@@ -34,6 +34,8 @@ group :development, :test do
 
   gem 'rspec', '~> 3.7'
   gem 'rspec-rails', '~> 3.7'
+
+  gem 'ffaker', '~> 2.9.0'
 end
 
 group :development do
