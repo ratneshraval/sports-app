@@ -1,3 +1,3 @@
 class SportSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :icon_name
 end

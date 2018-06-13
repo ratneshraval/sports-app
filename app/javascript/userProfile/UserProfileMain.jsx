@@ -20,7 +20,7 @@ class UserProfileMain extends React.Component {
   }
 
   componentDidMount () {
-    const url = '/api/users/' + '2'
+    const url = `/api/users/${this.props.match.params.id}`
     const response = fetchRequestWithErrors(url, 'GET', null)
       .then((response) => {
         this.setState({userProfile: response})
@@ -28,6 +28,7 @@ class UserProfileMain extends React.Component {
   }
 
   render () {
+    console.log(this.props)
     const userProfile = this.state.userProfile
     return (
       <React.Fragment>
@@ -48,14 +49,17 @@ class UserProfileMain extends React.Component {
 }
 
 UserProfileMain.propTypes = {
-  userProfile: PropTypes.object
-
+  userProfile: PropTypes.object,
+  match: PropTypes.object
 }
 
 UserProfileMain.defaultProps = {
   userProfile: {
     sports: undefined,
     teams: undefined
+  },
+  match: {
+    id: undefined
   }
 }
 

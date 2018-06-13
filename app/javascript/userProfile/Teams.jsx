@@ -7,11 +7,10 @@ import {Typography,
   Grid, Paper,
   TextField,
   List, ListItem, ListItemText} from '@material-ui/core'
-import ImageIcon from '@material-ui/icons/Image'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 export default class Teams extends React.Component {
   render () {
-    console.log(this.props.teams)
     return (
 
       <Grid item sm={6}>
@@ -25,7 +24,7 @@ export default class Teams extends React.Component {
                   return (
                     <ListItem key={index} button>
                       <Avatar>
-                        <ImageIcon />
+                        <FontAwesomeIcon icon={item.sport.icon_name} />
                       </Avatar>
                       <ListItemText
                         primary={item.name}
