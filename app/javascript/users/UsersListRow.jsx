@@ -1,22 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import Avatar from '@material-ui/core/Avatar'
-import ImageIcon from '@material-ui/icons/Image'
+import {ListItem, ListItemText, ListItemSecondaryAction,
+  Avatar, IconButton} from '@material-ui/core'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 export default class UsersListRow extends React.Component {
   render () {
     const { classes } = this.props
     return (
-      <ListItem component={Link} to={'/users/' + this.props.userId} button>
-        <Avatar>
-          <ImageIcon />
-        </Avatar>
-        <ListItemText
-          primary={this.props.firstName + ' ' + this.props.lastName} />
-      </ListItem>
+
+      this.props.isPublic
+        ? <ListItem component={Link} to={'/users/' + this.props.userId} button>
+          <Avatar>
+            <FontAwesomeIcon icon='user' />
+          </Avatar>
+          <ListItemText
+            primary={this.props.firstName + ' ' + this.props.lastName} />
+          <ListItemSecondaryAction>
+            <IconButton aria-label="View">
+              <FontAwesomeIcon icon='angle-right' />
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
+
+        : <ListItem>
+          <Avatar>
+            <FontAwesomeIcon icon='user' />
+          </Avatar>
+          <ListItemText
+            primary={this.props.firstName + ' ' + this.props.lastName} />
+        </ListItem>
+
     )
   }
 }
@@ -24,5 +39,6 @@ export default class UsersListRow extends React.Component {
 UsersListRow.propTypes = {
   userId: PropTypes.number,
   firstName: PropTypes.string,
-  lastName: PropTypes.string
+  lastName: PropTypes.string,
+  isPublic: PropTypes.bool
 }

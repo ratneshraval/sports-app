@@ -37,31 +37,29 @@ class UsersListView extends React.Component {
 
     return (
 
-      <Grid item sm={6}>
+      <Grid item sm={9} style={{paddingLeft: 30}}>
         <Grid container justify="center" style={{paddingTop: 30}}>
           <Typography variant='headline'>
             Users
           </Typography>
         </Grid>
+        <Paper className={classes.root} >
 
-        <Grid container justify="center" style={{padding: 30}}>
+          <List>
+            {
+              this.state.usersList.map((item, index) => {
+                return (
+                  <UsersListRow key={index}
+                    userId={item.id}
+                    firstName={item.first_name}
+                    lastName={item.last_name}
+                    isPublic={item.is_public}/>
+                )
+              })
+            }
+          </List>
 
-          <Paper className={classes.root}>
-
-            <List>
-              {
-                this.state.usersList.map((item, index) => {
-                  return (
-                    <UsersListRow key={index}
-                      userId={item.id}
-                      firstName={item.first_name}
-                      lastName={item.last_name} />
-                  )
-                })
-              }
-            </List>
-          </Paper>
-        </Grid>
+        </Paper>
       </Grid>
 
     )

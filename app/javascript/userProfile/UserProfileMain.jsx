@@ -7,6 +7,7 @@ import withRoot from 'components/withRoot'
 import BasicProfile from './BasicProfile'
 import Sports from './Sports'
 import Teams from './Teams'
+import Participation from './Participation'
 
 class UserProfileMain extends React.Component {
   constructor (props) {
@@ -28,7 +29,7 @@ class UserProfileMain extends React.Component {
   }
 
   render () {
-    console.log(this.props)
+    // console.log(this.props)
     const userProfile = this.state.userProfile
     return (
       <React.Fragment>
@@ -37,11 +38,12 @@ class UserProfileMain extends React.Component {
 
           <BasicProfile profile={userProfile}/>
           <Sports sports={userProfile.sports}/>
+          <Teams teams={userProfile.teams}/>
+          <Participation userId={this.props.match.params.id}/>
         </Grid>
         <Grid align='center' container spacing={16}
           style={{paddingTop: 20, paddingBottom: 20}}>
 
-          <Teams teams={userProfile.teams}/>
         </Grid>
       </React.Fragment>
     )
