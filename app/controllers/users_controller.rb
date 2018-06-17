@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
 
-  def dashboard; end
-
-
   # API namespaced actions
 
   def index
