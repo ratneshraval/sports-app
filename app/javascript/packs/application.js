@@ -8,5 +8,6 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import 'babel-polyfill'
+// import routes from 'routes'
 
 console.log('Hello from Sports')
