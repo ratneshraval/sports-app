@@ -57,3 +57,15 @@ user_objects = []
 end
 users = User.create!(user_objects)
 p 'Created Users'
+
+event_objects = []
+20.times do
+  event_objects << {
+    event_date: FFaker::Time.between(5.months.ago, 2.days.ago).change({min: 0, sec: 0}),
+    location: "#{FFaker::Venue.name}, #{FFaker::Address.city}",
+    duration_minutes: [15, 30, 45, 60].to_a.sample,
+    teams: teams.sample(2)
+  }
+end
+events = Event.create!(event_objects)
+p 'Created Events'
