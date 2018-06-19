@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 import {Typography,
   Card, CardHeader, CardActions, CardContent,
   Avatar,
@@ -8,23 +9,25 @@ import {Typography,
   List, ListItem, ListItemText} from '@material-ui/core'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
-export default class Sports extends React.Component {
+export default class Teams extends React.Component {
   render () {
     return (
+
       <Card>
         <CardHeader
-          title="Sports I'm interested in" />
+          title={this.props.title} />
         <CardContent>
           <List>
             {
-              this.props.sports.map((item, index) => {
+              this.props.teams.map((item, index) => {
                 return (
                   <ListItem key={index} button>
                     <Avatar>
-                      <FontAwesomeIcon icon={item.icon_name} />
+                      <FontAwesomeIcon icon={item.sport.icon_name} />
                     </Avatar>
                     <ListItemText
-                      primary={item.name} />
+                      primary={item.name}
+                      secondary={item.organization_id}/>
                   </ListItem>
                 )
               })
@@ -37,10 +40,12 @@ export default class Sports extends React.Component {
   }
 }
 
-Sports.propTypes = {
-  sports: PropTypes.array
+Teams.propTypes = {
+  title: PropTypes.string,
+  teams: PropTypes.array
 }
 
-Sports.defaultProps = {
-  sports: []
+Teams.defaultProps = {
+  title: '',
+  teams: []
 }

@@ -5,9 +5,12 @@ import Grid from '@material-ui/core/Grid'
 import {fetchRequestWithErrors} from 'helpers/http'
 import withRoot from 'components/withRoot'
 import BasicProfile from './BasicProfile'
+import BasicProfileEdit from './BasicProfileEdit'
 import Sports from './Sports'
-import Teams from './Teams'
+import Teams from 'components/Teams'
 import Participation from './Participation'
+
+const gridStyles = {paddingTop: 20, paddingLeft: 20, paddingRight: 20}
 
 class UserProfileMain extends React.Component {
   constructor (props) {
@@ -16,8 +19,11 @@ class UserProfileMain extends React.Component {
       userProfile: {
         sports: undefined,
         teams: undefined
-      }
+      },
+      editMode: false
     }
+    this.updateState = this.updateState.bind(this)
+    this.toggleEditMode = this.toggleEditMode.bind(this)
   }
 
   componentDidMount () {
@@ -28,22 +34,46 @@ class UserProfileMain extends React.Component {
       })
   }
 
+  updateState (key, value) {
+    this.setState({[key]: value})
+  }
+
+  toggleEditMode () {
+    this.updateState('editMode', !this.state.editMode)
+  }
+
   render () {
     // console.log(this.props)
     const userProfile = this.state.userProfile
     return (
       <React.Fragment>
         <Grid container spacing={16}
-          style={{paddingTop: 20}}>
+          style={gridStyles}>
 
-          <BasicProfile profile={userProfile}/>
-          <Sports sports={userProfile.sports}/>
-          <Teams teams={userProfile.teams}/>
-          <Participation userId={this.props.match.params.id}/>
+          <Grid item sm={4}>
+            {
+              this.state.editMode
+                ? <BasicProfileEdit profile={userProfile}
+                  toggleEditMode={this.toggleEditMode}
+                />
+                : <BasicProfile profile={userProfile}
+                  toggleEditMode={this.toggleEditMode}
+                />
+            }
+          </Grid>
+
+          <Grid item sm={4}>
+            <Sports sports={userProfile.sports}/>
+          </Grid>
+
+          <Grid item sm={4}>
+            <Teams title='My Teams' teams={userProfile.teams}/>
+          </Grid>
+
         </Grid>
         <Grid align='center' container spacing={16}
-          style={{paddingTop: 20, paddingBottom: 20}}>
-
+          style={gridStyles}>
+          <Participation userId={this.props.match.params.id}/>
         </Grid>
       </React.Fragment>
     )

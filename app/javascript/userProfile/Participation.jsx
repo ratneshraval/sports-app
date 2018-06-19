@@ -5,7 +5,7 @@ import {Card,
   CardHeader,
   CardContent,
   Grid} from '@material-ui/core'
-import { BarChart, Bar, XAxis, YAxis, Legend } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, Legend, Tooltip } from 'recharts'
 
 export default class Participation extends React.Component {
   constructor (props) {
@@ -41,6 +41,7 @@ export default class Participation extends React.Component {
               <BarChart width={730} height={250} data={this.state.bySport}>
                 <XAxis dataKey="name" />
                 <YAxis/>
+                <Tooltip/>
                 <Legend />
                 <Bar type="monotone" dataKey="minutes" name='Minutes' barSize={30} fill="#8884d8" />
               </BarChart>
@@ -57,6 +58,7 @@ export default class Participation extends React.Component {
               <BarChart width={730} height={250} data={this.state.byTeam}>
                 <XAxis dataKey="name" />
                 <YAxis/>
+                <Tooltip/>
                 <Legend />
                 <Bar type="monotone" dataKey="minutes" name='Minutes' barSize={30} fill="#8884d8" />
               </BarChart>
