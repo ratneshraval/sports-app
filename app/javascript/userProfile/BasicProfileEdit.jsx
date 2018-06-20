@@ -9,18 +9,32 @@ import {Typography,
   TextField, InputLabel, Input, Button, Switch} from '@material-ui/core'
 
 export default class BasicProfileEdit extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      profile: this.props.profile
+    }
+  }
+
+  handleChange (key, value) {
+    let newState = Object.assign(this.state.profile)
+    newState[key] = value
+
+    this.setState({profile: newState})
+  }
+
   render () {
-    const profile = this.props.profile
+    const profile = this.state.profile
 
     return (
       <Card>
         <CardHeader title="Basic Information"
           action={
             <div>
-              <Button color="primary" onClick={this.props.toggleEditMode}>
+              <Button color="primary" onClick={() => this.props.onSave(this.state.profile)}>
               Save
               </Button>
-              <Button color="secondary" onClick={this.props.toggleEditMode}>
+              <Button color="secondary" onClick={this.props.onCancel}>
               Cancel
               </Button>
             </div>
@@ -31,6 +45,7 @@ export default class BasicProfileEdit extends React.Component {
             id="firstName"
             label="First Name"
             value={profile.first_name || ''}
+            onChange={(event) => this.handleChange('first_name', event.target.value)}
             margin="normal"
           />
 
@@ -38,6 +53,7 @@ export default class BasicProfileEdit extends React.Component {
             id="lastName"
             label="Last Name"
             value={profile.last_name || ''}
+            onChange={(event) => this.handleChange('last_name', event.target.value)}
             margin="normal"
           />
 
@@ -45,6 +61,7 @@ export default class BasicProfileEdit extends React.Component {
             id="height"
             label="Height (in cm)"
             value={profile.height || ''}
+            onChange={(event) => this.handleChange('height', event.target.value)}
             margin="normal"
           />
 
@@ -52,6 +69,7 @@ export default class BasicProfileEdit extends React.Component {
             id="weight"
             label="Weight (in lbs)"
             value={profile.weight || ''}
+            onChange={(event) => this.handleChange('weight', event.target.value)}
             margin="normal"
           />
 
@@ -60,6 +78,7 @@ export default class BasicProfileEdit extends React.Component {
             label="Email"
             fullWidth
             value={profile.email || ''}
+            onChange={(event) => this.handleChange('email', event.target.value)}
             margin="normal"
           />
 
@@ -67,6 +86,7 @@ export default class BasicProfileEdit extends React.Component {
                 Profile Visibility:
             <Switch
               checked={profile.is_public}
+              onChange={(event) => this.handleChange('is_public', event.target.checked)}
               value="public"
             />
           </Typography>
@@ -84,6 +104,10 @@ BasicProfileEdit.propTypes = {
 BasicProfileEdit.defaultProps = {
   profile: {
     first_name: '',
-    last_name: ''
+    last_name: '',
+    email: '',
+    height: '0',
+    weight: '0',
+    is_public: true
   }
 }

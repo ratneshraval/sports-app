@@ -24,6 +24,7 @@ class UserProfileMain extends React.Component {
     }
     this.updateState = this.updateState.bind(this)
     this.toggleEditMode = this.toggleEditMode.bind(this)
+    this.onSave = this.onSave.bind(this)
   }
 
   componentDidMount () {
@@ -41,6 +42,10 @@ class UserProfileMain extends React.Component {
   toggleEditMode () {
     this.updateState('editMode', !this.state.editMode)
   }
+  onSave (newProfile) {
+    this.updateState('userProfile', newProfile)
+    this.toggleEditMode()
+  }
 
   render () {
     // console.log(this.props)
@@ -54,7 +59,8 @@ class UserProfileMain extends React.Component {
             {
               this.state.editMode
                 ? <BasicProfileEdit profile={userProfile}
-                  toggleEditMode={this.toggleEditMode}
+                  onSave={this.onSave}
+                  onCancel={this.toggleEditMode}
                 />
                 : <BasicProfile profile={userProfile}
                   toggleEditMode={this.toggleEditMode}
