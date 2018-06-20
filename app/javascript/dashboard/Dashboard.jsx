@@ -9,17 +9,15 @@ import OrganizationProfileMain from 'organizations/OrganizationProfileMain'
 export default class Dashboard extends React.Component {
   render () {
     return (
-      <Provider store={store}>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path='/users' component={UsersListView}/>
-            <Route path='/users/:id' component={UserProfileMain}/>
-            <Route exact path='/organizations' component={OrganizationsListView}/>
-            <Route path='/organizations/:id' component={OrganizationProfileMain}/>
-            <Route component={UsersListView} />
-          </Switch>
-        </BrowserRouter>
-      </Provider>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/users' component={UsersListView}/>
+          <Route path='/users/:id' component={UserProfileMain}/>
+          <Route exact path='/organizations' component={OrganizationsListView}/>
+          <Route path='/organizations/:id' component={OrganizationProfileMain}/>
+          <Route component={UsersListView} />
+        </Switch>
+      </BrowserRouter>
     )
   }
 }
