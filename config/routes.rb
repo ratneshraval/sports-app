@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   root 'dashboard#welcome'
 
-  resources :organizations, only: [:show]
-
   namespace :api do
     resources :users, only: [:index, :show], controller: '/users' do
       resources :participations, only: [], controller: '/users/participations' do
@@ -15,9 +13,14 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :organizations, only: [:index, :show], controller: '/organizations' do
+      resources :participations, only: [], controller: '/organizations/participations' do
+        collection do
+          get 'by_team'
+        end
+      end
+    end
   end
 
-
   get '*path', to: 'dashboard#welcome', constraints: ->(request) { request.format.html? }
-
 end
