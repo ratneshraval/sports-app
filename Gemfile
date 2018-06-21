@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.4.2'
+
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -10,8 +12,6 @@ gem 'rails', '~> 5.1.6'
 
 gem 'sass-rails', '~> 5.0'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -22,9 +22,10 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'active_model_serializers', '~> 0.10.2'
 
-group :development, :test do
-  gem 'foreman'
+gem 'foreman'
+gem 'ffaker', '~> 2.9.0'
 
+group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
@@ -33,8 +34,6 @@ group :development, :test do
 
   gem 'rspec', '~> 3.7'
   gem 'rspec-rails', '~> 3.7'
-
-  gem 'ffaker', '~> 2.9.0'
 end
 
 group :development do
