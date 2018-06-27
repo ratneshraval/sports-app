@@ -7,7 +7,6 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 export default class UsersListRow extends React.Component {
   render () {
-    const { classes } = this.props
     return (
 
       this.props.isPublic

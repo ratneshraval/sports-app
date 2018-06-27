@@ -42,7 +42,7 @@ class OrganizationProfileMain extends React.Component {
           <Grid item sm={4}>
             <Teams title='Teams under this organization' teams={org.teams}/>
           </Grid>
-          <Grid item sm={6}>
+          <Grid item sm={9}>
             <Participation orgId={this.props.match.params.id}/>
           </Grid>
         </Grid>

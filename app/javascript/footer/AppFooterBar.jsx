@@ -1,22 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 
 import Typography from '@material-ui/core/Typography'
 
-const styles = {
-  root: {
-    flexGrow: 1
-  }
-}
-
 function AppFooterBar (props) {
-  const { classes } = props
   return (
-    <div className={classes.root}>
+    <div style={{flexGrow: 1}} >
       <AppBar position="static" color="default">
         <Toolbar>
           <Typography variant="title" color="inherit">
@@ -29,7 +21,6 @@ function AppFooterBar (props) {
 }
 
 AppFooterBar.propTypes = {
-  classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(AppFooterBar)
+export default AppFooterBar
