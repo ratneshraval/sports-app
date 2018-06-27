@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
 import {fetchRequestWithErrors} from 'helpers/http'
 import List from '@material-ui/core/List'
 import Grid from '@material-ui/core/Grid'
@@ -8,12 +7,6 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import withRoot from 'components/withRoot'
 import UsersListRow from './UsersListRow.jsx'
-
-const styles = theme => ({
-  root: {
-    // width: '100%'
-  }
-})
 
 class UsersListView extends React.Component {
   constructor (props) {
@@ -33,8 +26,6 @@ class UsersListView extends React.Component {
   }
 
   render () {
-    const { classes } = this.props
-
     return (
 
       <Grid item sm={9} style={{paddingLeft: 30}}>
@@ -43,7 +34,7 @@ class UsersListView extends React.Component {
             Users
           </Typography>
         </Grid>
-        <Paper className={classes.root} >
+        <Paper>
 
           <List>
             {
@@ -66,4 +57,4 @@ class UsersListView extends React.Component {
   }
 }
 
-export default withStyles(styles)(withRoot(UsersListView))
+export default withRoot(UsersListView)
