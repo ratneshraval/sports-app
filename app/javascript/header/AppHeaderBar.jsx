@@ -10,7 +10,7 @@ const AppHeaderBar = (props) => {
 
         <Toolbar>
           <Typography variant="title" color="inherit" style={{flex: 1}}>
-            Sports Management
+            Sports Management Application
           </Typography>
           <Button color="inherit" component={Link} to='/users'>Users</Button>
           <Button color="inherit" component={Link} to='/organizations'>Organizations</Button>
