@@ -38,7 +38,7 @@ export default class Participation extends React.Component {
               title="Participation by Sport" />
             <CardContent>
 
-              <BarChart width={730} height={250} data={this.state.bySport}>
+              <BarChart width={500} height={250} data={this.state.bySport}>
                 <XAxis dataKey="name" />
                 <YAxis/>
                 <Tooltip/>
@@ -55,7 +55,7 @@ export default class Participation extends React.Component {
               title="Participation by Team" />
             <CardContent>
 
-              <BarChart width={730} height={250} data={this.state.byTeam}>
+              <BarChart width={500} height={250} data={this.state.byTeam}>
                 <XAxis dataKey="name" />
                 <YAxis/>
                 <Tooltip/>
